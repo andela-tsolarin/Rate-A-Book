@@ -5,10 +5,12 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
   $locationProvider.html5Mode(true);
 
   $routeProvider.when('/', {
-    templateUrl: 'partials/home.html'
+    templateUrl: 'partials/home.html',
+    controller: 'home'
   })
   .when('/home', {
-    templateUrl: 'partials/home.html'
+    templateUrl: 'partials/home.html',
+    controller: 'home'
   });
 
 }]);
