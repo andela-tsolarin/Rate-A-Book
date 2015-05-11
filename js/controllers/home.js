@@ -4,6 +4,7 @@ app.controller("home", function ($scope, $window, $route, $book) {
   $scope.books = [];
   $scope.booksResult = [];
   $scope.query = '';
+  $scope.searchStatus = "Search";
 
   $book.getBooks()
     .success(function(data) {
@@ -13,6 +14,8 @@ app.controller("home", function ($scope, $window, $route, $book) {
 
 
   $scope.search = function() {
+
+    $scope.searchStatus = "Searching...";
     $scope.booksResult = [];
 
     for (var i = 0; i < $scope.books.length; i++) {
@@ -24,6 +27,9 @@ app.controller("home", function ($scope, $window, $route, $book) {
         $scope.booksResult.push(book);
       }
     }
+
+
+    $scope.searchStatus = "Search";
 
   }  
 });
