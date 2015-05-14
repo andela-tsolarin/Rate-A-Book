@@ -1,4 +1,4 @@
-var app = angular.module("rateApp",['ngRoute','ngCookies', 'ngStorage']);
+var app = angular.module("rateApp",['ngRoute','ngCookies', 'ngStorage', 'ngSanitize', 'ngEmoticons']);
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 

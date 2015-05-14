@@ -5,7 +5,7 @@
   </div>
   <div class="pure-u-1 pure-u-sm-1 pure-u-md-1 pure-u-lg-1-4"></div>
 </div>
-<div class="pure-g" style="margin-top: 50px;">>
+<div class="pure-g" style="margin-top: 50px;">
   <div class="pure-u-1 pure-u-sm-1 pure-u-md-1 pure-u-lg-1-5"></div>
   <div class="pure-u-1 pure-u-sm-1 pure-u-md-1 pure-u-lg-3-5">
 
@@ -43,7 +43,7 @@
 
           <div ng-repeat="rev in bookreviews" style="margin-bottom: 10px; padding: 3px; background:teal; color: #fff; font-family: Raleway; border-radius: 4px;">
             <i class="fa fa-user fw">&nbsp;</i>{{rev.name}}
-            <p>{{rev.comment}}</p>
+            <p ng-bind-html="rev.comment | emoticons:{linkTarget:'_blank'}"></p>
             <div ng-show="isOwner(rev)" style="text-align: right;">
               <button class="pure-button button-small button-success"><i class="fa fa-edit fw"></i></button>
               <button title="Delete" ng-click="delete($index)" class="pure-button button-small button-error"><i class="fa fa-trash fw"></i></button>
