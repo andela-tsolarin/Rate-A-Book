@@ -1,4 +1,4 @@
-app.controller("home", function ($scope, $window, $route, $book) {
+app.controller("home", function ($scope, $window, $route, $book, $localStorage) {
 
   $scope.rootPath = globalVars.apiHost;
   $scope.books = [];
@@ -23,13 +23,33 @@ app.controller("home", function ($scope, $window, $route, $book) {
       var q = $scope.query.toLowerCase();
 
       if (book.title.toLowerCase().indexOf(q) != -1) {
-        console.log(book);
         $scope.booksResult.push(book);
       }
     }
 
-
     $scope.searchStatus = "Search";
 
-  }  
+  }
+
+  $scope.user = '';
+  $scope.loggedIn = false;
+
+  if ($localStorage.user && $localStorage.user != '') {
+    $scope.user = $localStorage.user;
+    $scope.loggedIn = true;
+  }
+
+  $scope.login = function() {
+    if ($scope.user != '') {
+      $localStorage.user = $scope.user
+      $scope.loggedIn = true;
+      $('.uk-modal-close').click();
+    }
+  };
+
+  $scope.logout = function() {
+    $localStorage.user = '';
+    $scope.loggedIn = false;
+  };
+
 });

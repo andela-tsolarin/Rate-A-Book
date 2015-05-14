@@ -1,4 +1,4 @@
-var app = angular.module("rateApp",['ngRoute','ngCookies']);
+var app = angular.module("rateApp",['ngRoute','ngCookies', 'ngStorage']);
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
@@ -11,6 +11,10 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
   .when('/home', {
     templateUrl: 'partials/home.html',
     controller: 'home'
+  })
+  .when('/details/:id', {
+    templateUrl: 'partials/details.html',
+    controller: 'details'
   });
 
 }]);
