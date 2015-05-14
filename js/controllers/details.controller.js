@@ -32,6 +32,7 @@ app.controller("details", function ($scope, $window, $route, $routeParams, $book
 
   $scope.bookreviews = [];
   var loadReviews = function(){
+    $scope.reviews = $localStorage.reviews;
     $scope.bookreviews = [];
     for (var i = $scope.reviews.length - 1; i >= 0; i--) {
       if ($scope.reviews[i].book == $routeParams.id) {
@@ -48,11 +49,28 @@ app.controller("details", function ($scope, $window, $route, $routeParams, $book
   $scope.review.book = $routeParams.id;
   $scope.submit = function() {
     $scope.review.comment = $scope.comment;
-    $scope.reviews.push($scope.review);
-    $localStorage.reviews = $scope.reviews;
+    $localStorage.reviews.push($scope.review);
     loadReviews();
-    $scope.comment = '';
-  }
+  };
 
+  $scope.delete = function(index){
+    var review = $scope.bookreviews[index];
+    for (var i = 0; i < $localStorage.reviews.length; i++) {
+      if ($localStorage.reviews[i].name == review.name){
+        if ($localStorage.reviews[i].book == review.book){
+          $localStorage.reviews.splice(i, 1);
+          $scope.allowReviews = true;
+        }
+      }
+    }
+    loadReviews();
+  };
+
+  $scope.isOwner = function(obj) {
+    if (obj.name == $localStorage.user)
+      $scope.allowReviews = false;
+
+    return obj.name == $localStorage.user;
+  };
 
 });
