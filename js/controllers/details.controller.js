@@ -17,13 +17,13 @@ app.controller("details", function ($scope, $window, $route, $routeParams, $book
     }
   }
 
+  //$localStorage.reviews = [];
   $scope.reviews = [];
   $scope.user = $auth.loggedUser();
   $scope.loggedIn = $auth.isLoggedIn();
   $scope.allowReviews = false;
   if($auth.isLoggedIn())
     $scope.allowReviews = $auth.isLoggedIn();
-  //$localStorage.reviews = [];
 
   if (!$localStorage.reviews) {
     $localStorage.reviews = $scope.reviews;
