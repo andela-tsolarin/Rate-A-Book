@@ -63,7 +63,7 @@
             <i class="fa fa-user fw">&nbsp;</i>{{rev.name}}
             <p ng-bind-html="rev.comment | emoticons:{linkTarget:'_blank'}"></p>
             <div ng-show="isOwner(rev)" style="text-align: right;">
-              <button class="pure-button button-small button-success"><i class="fa fa-edit fw"></i></button>
+              <!-- <button class="pure-button button-small button-success"><i class="fa fa-edit fw"></i></button> -->
               <button title="Delete" ng-click="delete($index)" class="pure-button button-small button-error"><i class="fa fa-trash fw"></i></button>
             </div>
           </div>
