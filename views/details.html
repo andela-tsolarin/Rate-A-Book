@@ -1,3 +1,27 @@
+<div id="modal" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <form class="pure-form small-form pure-form-stacked">
+
+      <div class="pure-g">
+        <div class="pure-u-1">
+          <fieldset>
+            <div class="pure-control-group">
+              <label for="name">Edit Comment:</label>
+              <textarea class="pure-u-1 pure-u-sm-1 pure-u-md-1-1 pure-u-lg-24-24" ng-model="review.comment" placeholder="Write your comment"></textarea> 
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="uk-modal-footer">
+        <button class="pure-button button-success" ng-click="hideEdit()" type="submit">Update</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
 <div class="pure-g">
   <div class="pure-u-1" style="text-align: right;">
     <div class="inner">
@@ -63,11 +87,11 @@
             <i class="fa fa-user fw">&nbsp;</i>{{rev.name}}
             <p ng-bind-html="rev.comment | emoticons:{linkTarget:'_blank'}"></p>
             <div ng-show="isOwner(rev)" style="text-align: right;">
-              <!-- <button class="pure-button button-small button-success"><i class="fa fa-edit fw"></i></button> -->
+              <a href="#modal" data-uk-modal class="pure-button button-small button-success" ng-click="showEdit($index)"><i class="fa fa-edit fw"></i></a>
               <button title="Delete" ng-click="delete($index)" class="pure-button button-small button-error"><i class="fa fa-trash fw"></i></button>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>

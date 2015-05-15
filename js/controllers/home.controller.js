@@ -6,6 +6,7 @@ app.controller("home", function ($scope, $window, $route, $book, $localStorage, 
   $scope.query = '';
   $scope.searchStatus = "Search";
 
+  // Use book service to get all books in api json
   $book.getBooks()
     .success(function(data) {
       $scope.books = data;
