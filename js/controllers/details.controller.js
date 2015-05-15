@@ -1,4 +1,4 @@
-app.controller("details", function ($scope, $window, $route, $routeParams, $book, $localStorage) {
+app.controller("details", function ($scope, $window, $route, $routeParams, $book, $localStorage, $auth, $location) {
   
   var bookId = $routeParams.id;
   $scope.rootPath = globalVars.apiHost;
@@ -18,16 +18,17 @@ app.controller("details", function ($scope, $window, $route, $routeParams, $book
   }
 
   $scope.reviews = [];
+  $scope.user = $auth.loggedUser();
+  $scope.loggedIn = $auth.isLoggedIn();
   $scope.allowReviews = false;
+  if($auth.isLoggedIn())
+    $scope.allowReviews = $auth.isLoggedIn();
   //$localStorage.reviews = [];
+
   if (!$localStorage.reviews) {
     $localStorage.reviews = $scope.reviews;
   } else {
     $scope.reviews = $localStorage.reviews;
-  }
-
-  if ($localStorage.user && $localStorage.user != '') {
-    $scope.allowReviews = true;
   }
 
   $scope.bookreviews = [];
@@ -45,9 +46,10 @@ app.controller("details", function ($scope, $window, $route, $routeParams, $book
   loadReviews();
 
   $scope.review = {};
-  $scope.review.name = $localStorage.user;
+  // alert($auth.loggedUser());
   $scope.review.book = $routeParams.id;
   $scope.submit = function() {
+    $scope.review.name = $auth.loggedUser();
     $scope.review.comment = $scope.comment;
     $localStorage.reviews.push($scope.review);
     loadReviews();
@@ -64,6 +66,11 @@ app.controller("details", function ($scope, $window, $route, $routeParams, $book
       }
     }
     loadReviews();
+  };
+
+  $scope.logout = function() {
+    $auth.logout();
+    $location.path('home');
   };
 
   $scope.isOwner = function(obj) {

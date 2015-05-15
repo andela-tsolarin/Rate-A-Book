@@ -1,11 +1,11 @@
 app.factory('$book', function($http) {
 
-    var book = {};
+  var book = {};
 
-    book.getBooks = function() {
-      return $http.get(globalVars.apiHost + "/books.json");
-    };
+  book.getBooks = function() {
+    return $http.get(globalVars.apiHost + "/books.json");
+  };
 
-    return book;
+  return book;
 
-  });
+});

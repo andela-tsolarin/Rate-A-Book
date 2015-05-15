@@ -1,4 +1,4 @@
-app.controller("home", function ($scope, $window, $route, $book, $localStorage) {
+app.controller("home", function ($scope, $window, $route, $book, $localStorage, $auth) {
 
   $scope.rootPath = globalVars.apiHost;
   $scope.books = [];
@@ -29,27 +29,9 @@ app.controller("home", function ($scope, $window, $route, $book, $localStorage) 
 
     $scope.searchStatus = "Search";
 
-  }
-
-  $scope.user = '';
-  $scope.loggedIn = false;
-
-  if ($localStorage.user && $localStorage.user != '') {
-    $scope.user = $localStorage.user;
-    $scope.loggedIn = true;
-  }
-
-  $scope.login = function() {
-    if ($scope.user != '') {
-      $localStorage.user = $scope.user
-      $scope.loggedIn = true;
-      $('.uk-modal-close').click();
-    }
   };
 
-  $scope.logout = function() {
-    $localStorage.user = '';
-    $scope.loggedIn = false;
-  };
+  $scope.user = $auth.loggedUser();
+  $scope.loggedIn = $auth.isLoggedIn();
 
 });

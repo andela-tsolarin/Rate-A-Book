@@ -5,15 +5,15 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
   $locationProvider.html5Mode(true);
 
   $routeProvider.when('/', {
-    templateUrl: 'partials/home.html',
+    templateUrl: 'views/home.html',
     controller: 'home'
   })
   .when('/home', {
-    templateUrl: 'partials/home.html',
+    templateUrl: 'views/home.html',
     controller: 'home'
   })
   .when('/details/:id', {
-    templateUrl: 'partials/details.html',
+    templateUrl: 'views/details.html',
     controller: 'details'
   });
 
